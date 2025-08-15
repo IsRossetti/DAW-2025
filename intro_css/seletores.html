@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <!-- conteúdo em português -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seletores, Propriedades e Valores</title>
+
+  <style>
+    /* Seletor por TAG: aplica a todos os <p> (padrão) */
+    p{
+      color: red;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      margin: 0.5rem 0;
+    }
+
+    /* Seletor por CLASSE: .conteudo-shadow estiliza a caixa */
+    .conteudo-shadow{
+      /* centraliza texto (horizontalmente) */
+      text-align: center;
+
+      /* ATENÇÃO: align-content só tem efeito em grid/flex com multi-linhas.
+         Para centralizar conteúdo dentro da caixa, use grid ou flex: */
+      display: grid;
+      place-items: center;       /* centraliza conteúdo horizontal e vertical */
+
+      /* Layout e estética */
+      width: 200px;
+      height: 200px;
+      padding: 20px;
+      border-radius: 20px;       /* cantos arredondados */
+      background-color: #fff;
+
+      /* Borda (grossura, tipo e cor) */
+      border: 1px solid #ccc;
+
+      /* Sombra mais suave (com transparência) */
+      box-shadow: 5px 5px 15px rgba(0,0,0,.3);
+
+      /* Transição para animar hover do border-radius */
+      transition: border-radius .25s ease;
+      margin-bottom: 1rem;
+    }
+
+    /* PSEUDO-CLASSE :hover → o que acontece quando o mouse passa */
+    .conteudo-shadow:hover{
+      border-radius: 90px;
+    }
+
+    /* Seletor por ATRIBUTO: apenas inputs type="text" */
+    input[type="text"]{
+      border: 1px solid red;
+      padding: .6rem .75rem;
+      border-radius: .6rem;
+      outline: none; /* vamos definir foco acessível abaixo */
+    }
+
+    /* Exemplo de estilo de foco (acessibilidade) */
+    input[type="text"]:focus,
+    input[type="password"]:focus{
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59,130,246,.2);
+    }
+
+    /* Apenas <p> que sejam FILHOS DIRETOS de uma <div> ficam roxos.
+       Este seletor tem maior especificidade que o p{} geral acima,
+       então ele sobrescreve a cor vermelha nesses casos. */
+    div > p {
+      color: purple;
+    }
+
+    /* Só para organizar o exemplo de login visualmente */
+    .exemplo-login{
+      display: grid;
+      gap: .5rem;
+      max-width: 320px;
+    }
+
+    input[type="password"]{
+      border: 1px solid #cbd5e1;
+      padding: .6rem .75rem;
+      border-radius: .6rem;
+    }
+
+    /* Pseudo-classe :hover nos inputs (efeito sutil) */
+    input[type="text"]:hover,
+    input[type="password"]:hover{
+      border-color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="conteudo-shadow">
+    <div>
+      <h3>Tipos de seletores</h3>
+      <h4>Seletor por tag</h4>
+      <p>resultado do seletor por tag</p>
+    </div>
+  </div>
+
+  <h4>Seletor por classe</h4>
+
+  <div class="exemplo-login">
+    <h4>Seletor por atributo</h4>
+    <!-- type="text" receberá borda vermelha e foco customizado -->
+    <input type="text" placeholder="Campo texto" id="usuario">
+
+    <!-- password recebe um estilo diferente para você ver a diferença -->
+    <input type="password" placeholder="Campo senha" id="senha">
+  </div>
+
+  <div>
+    <h4>Seletor por PSEUDO-CLASSE</h4>
+    <!-- Este <p> é FILHO DIRETO de <div>, logo fica roxo pelo seletor div > p -->
+    <p>resultado do seletor por PSEUDO-CLASSE</p>
+  </div>
+
+</body>
+</html>
